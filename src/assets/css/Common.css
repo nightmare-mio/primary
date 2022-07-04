@@ -1,0 +1,65 @@
+/* 手形状样式 */
+.action_cursor {
+    cursor: pointer;
+}
+
+/* 消除子元素浮动造成父元素塌陷的问题 */
+.clear_float::after {
+    /*添加一个内容*/
+    content: "";
+    /*转换为一个块元素*/
+    display: block;
+    /*清除两侧的浮动*/
+    clear: both;
+}
+
+/* 文字上移与ico平齐 */
+.ico_text {
+    vertical-align: 5px;
+    padding: 0 10px 0 0;
+    letter-spacing: 1px;
+}
+
+/* 右盒子 */
+.article-list-box {
+    padding: 20px 40px 0 0;
+}
+
+/* 字体样式 */
+div {
+    font-family: "楷体";
+}
+
+.pa_5 {
+    padding: 5px;
+}
+
+.pa_right_5 {
+    padding-right: 5px;
+}
+
+.pa_right_10 {
+    padding-right: 10px;
+}
+.pa_column_10 {
+    padding: 10px 0;
+}
+.pa_10 {
+    padding: 10px;
+}
+
+.mr_10 {
+    margin: 10px;
+}
+
+.mr_column_10 {
+    margin: 10px 0px;
+}
+
+.mr_row_10 {
+    margin: 0px 10px;
+}
+
+.font-grey {
+    color: #a1a1a1;
+}
