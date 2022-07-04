@@ -39,6 +39,7 @@
         theme="outline"
         size="22"
         fill="#ffffff"
+        @click="qqLink()"
       />
     </div>
   </div>
@@ -63,9 +64,12 @@ export default {
     },
     mailLink() {
       window.open(
-        "https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=wanglongwei2009@qq.com",
+        "http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=-4iekZiTkJGYiJqWzc-Pxr_OjtGckJI",
         "_blank"
       );
+    },
+    qqLink() {
+      window.open("https://jq.qq.com/?_wv=1027&k=ppOgw5Mo", "_blank");
     },
   },
 };

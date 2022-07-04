@@ -40,6 +40,7 @@ export default {
 .index-title-1 {
   text-align: center;
   font-size: 50px;
+  user-select: none;
 }
 .title-img {
   width: 150px;

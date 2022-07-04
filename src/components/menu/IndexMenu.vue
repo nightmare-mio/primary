@@ -2,7 +2,7 @@
   <div id="menu-main">
     <div
       :class="{ menu_show: action[0] }"
-      class="menu-item pa_10"
+      class="menu-item"
       @mouseleave="action[0] = false"
       @click="$router.push('/')"
     >
@@ -17,7 +17,7 @@
     </div>
     <div
       :class="{ menu_show: action[1] }"
-      class="menu-item pa_10"
+      class="menu-item"
       @mouseleave="action[1] = false"
       @click="$router.push('/note')"
     >
@@ -32,7 +32,7 @@
     </div>
     <div
       :class="{ menu_show: action[2] }"
-      class="menu-item pa_10"
+      class="menu-item"
       @mouseleave="action[2] = false"
       @click="$router.push('/Tools')"
     >
@@ -47,7 +47,7 @@
     </div>
     <div
       :class="{ menu_show: action[3] }"
-      class="menu-item pa_10"
+      class="menu-item"
       @mouseleave="action[3] = false"
       @click="$router.push('/cattery')"
     >
@@ -62,7 +62,7 @@
     </div>
     <div
       :class="{ menu_show: action[4] }"
-      class="menu-item pa_10"
+      class="menu-item"
       @mouseleave="action[4] = false"
       @click="$router.push('/friendChain')"
     >
@@ -77,7 +77,7 @@
     </div>
     <div
       :class="{ menu_show: action[5] }"
-      class="menu-item pa_10"
+      class="menu-item"
       @mouseleave="action[5] = false"
       @click="$router.push('/about')"
     >
@@ -92,7 +92,7 @@
     </div>
     <div
       :class="{ menu_show: action[6] }"
-      class="menu-item pa_10"
+      class="menu-item"
       @mouseleave="action[6] = false"
       @click="$router.push('/setting')"
     >
@@ -151,12 +151,13 @@ body {
   justify-content: end;
   position: fixed;
   width: 10rem;
-  padding-top: 7.5rem;
+  padding-top: 145px;
   height: 22.5rem;
 }
 .menu-item {
   float: right;
   clear: both;
+  padding: 8px;
   /*存在换行符，有具体大小，所以会产生间隙*/
 }
 @keyframes shake {

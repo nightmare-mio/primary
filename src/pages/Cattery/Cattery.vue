@@ -1,15 +1,10 @@
 <template>
-  <div>
-    <h1>jkfdjkf</h1>
-  </div>
+  <h1>敬请期待</h1>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
 <style>
-
 </style>

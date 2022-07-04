@@ -26,8 +26,8 @@ export default {
       // 获取画布
       var ctx = canvas.getContext("2d");
       // 设置画布的大小
-      var w = canvas.width = window.innerWidth;
-      var h = canvas.height = window.innerHeight;
+      var w = (canvas.width = window.innerWidth);
+      var h = (canvas.height = window.innerHeight);
 
       var stars = []; //星星的数组
       var count = 0;
@@ -137,9 +137,13 @@ export default {
   margin: 0;
   padding: 0;
 }
+
+body {
+  overflow-x: hidden;
+}
 canvas {
-  position:fixed;
-  display: inline-block;
+  position: fixed;
+  display: block;
   z-index: -1;
   left: 0;
   top: 0;
