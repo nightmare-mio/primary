@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import Search from "@/components/Search/Search.vue";
-import Article from "@/components/Article/ArticlePreview.vue";
+import Search from "@/components/search/index.vue";
+import Article from "@/components/article/index.vue";
 import { get } from "@/axios/axios";
 import { articles } from "@/apis/api";
 export default {
@@ -38,5 +38,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

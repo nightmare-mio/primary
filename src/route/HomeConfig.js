@@ -6,8 +6,8 @@ const HomeConfig = {
         children: [
             {
                 path: '/',
-                name: 'dynamic',
-                component: () => import('@/pages/dynamic/index.vue'),
+                name: 'dashboard',
+                component: () => import('@/pages/dashboard/index.vue'),
             },
             {
                 path: '/note',

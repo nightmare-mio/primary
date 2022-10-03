@@ -44,7 +44,7 @@
 
 <script>
 import { Github } from "@icon-park/vue-next";
-import Comment from "./Comment.vue";
+import Comment from "./comment/index.vue";
 export default {
   components: {
     Github,

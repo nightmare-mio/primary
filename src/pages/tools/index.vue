@@ -1,5 +1,5 @@
 <template>
-  <h1>敬请期待</h1>
+  <h1>工具箱敬请期待</h1>
 </template>
 
 <script>

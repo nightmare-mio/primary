@@ -1,8 +1,7 @@
 
 
 const catalogues = {
-    index: "/api/catalogue/getmeunindex",
-    contactMe: "/api/catalogue/getcontactindex"
+    get: "/api/catalogue/getindex",
 }
 
 const articles = {

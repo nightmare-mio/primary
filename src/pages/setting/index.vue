@@ -8,11 +8,13 @@
 </template>
 
 <script>
-import StaySetting from "@/components/Setting/StaySetting.vue";
+import StaySetting from "./components/setting/index.vue";
 export default {
   components: { StaySetting },
   methods: {
-    save() {},
+    save() {
+      // TODO
+    },
   },
 };
 </script>

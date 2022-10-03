@@ -32,7 +32,12 @@
     </div>
     <!-- 正文 -->
     <div class="content">
-      <md-editor v-model="article.content" preview-only previewTheme="smart-blue" style="padding: 10px;"/>
+      <md-editor
+        v-model="article.content"
+        preview-only
+        previewTheme="smart-blue"
+        style="padding: 10px"
+      />
     </div>
     <Comments></Comments>
   </div>
@@ -40,7 +45,7 @@
 
 <script>
 import { Calendar, PreviewOpen, TagOne, Comment } from "@icon-park/vue-next";
-import Comments from "@/components/Comments/Comments.vue";
+import Comments from "@/components/comments/index.vue";
 import { get } from "@/axios/axios";
 import { articles } from "@/apis/api";
 import MdEditor from "md-editor-v3";

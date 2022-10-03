@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Article from "@/components/Article/ArticlePreview.vue";
+import Article from "@/components/article/index.vue";
 import { get } from "@/axios/axios";
 import { articles } from "@/apis/api";
 export default {

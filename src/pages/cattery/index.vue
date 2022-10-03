@@ -1,5 +1,5 @@
 <template>
-  <h1>工具箱藏猫馆敬请期待</h1>
+  <h1>藏猫馆敬请期待</h1>
 </template>
 
 <script>

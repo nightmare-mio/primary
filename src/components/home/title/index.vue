@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Poem from "../Poem/Poem.vue";
+import Poem from "../poem/index.vue";
 import img33 from "@/assets/img/33_正.png";
 export default {
   components: { Poem },
