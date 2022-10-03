@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import BackGroud from "./components/BackGroud.vue";
+import BackGroud from "./components/backGroud.vue";
 import Home from "./pages/Home.vue";
 export default {
   components: { BackGroud, Home },

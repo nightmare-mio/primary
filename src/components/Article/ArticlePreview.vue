@@ -3,7 +3,7 @@
     <h2 class="italic">
       {{ article.title }}
     </h2>
-    <div class="article_text">{{ article.previewContent }}</div>
+    <div class="article_text">{{ article.content }}</div>
     <div>
       <calendar theme="outline" size="20" fill="#ffffff" class="pa_right_5" />
       <span class="ico_text">{{ article.datetime }}</span>
@@ -20,7 +20,7 @@
       </span>
       <tag-one theme="outline" size="20" fill="#ffffff" class="pa_right_5" />
       <span class="ico_text" v-for="(item, index) in article.tags" :key="index">
-        {{ item }}
+        {{ item }}  
       </span>
     </div>
   </div>
@@ -36,7 +36,7 @@ export default {
   methods: {
     toArticle() {
       // 组件之间的值传递
-      this.$router.push("/article?idArticle=" + this.article.idArticle);
+      this.$router.push("/article?idArticle=" + this.article.id);
     },
   },
 };

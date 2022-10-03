@@ -31,8 +31,8 @@
       </span>
     </div>
     <!-- 正文 -->
-    <div class="article_text">
-      {{ article.content }}
+    <div class="content">
+      <md-editor v-model="article.content" preview-only previewTheme="smart-blue" style="padding: 10px;"/>
     </div>
     <Comments></Comments>
   </div>
@@ -43,9 +43,11 @@ import { Calendar, PreviewOpen, TagOne, Comment } from "@icon-park/vue-next";
 import Comments from "@/components/Comments/Comments.vue";
 import { get } from "@/axios/axios";
 import { articles } from "@/apis/api";
+import MdEditor from "md-editor-v3";
+import "md-editor-v3/lib/style.css";
 
 export default {
-  components: { Calendar, PreviewOpen, TagOne, Comment, Comments },
+  components: { Calendar, PreviewOpen, TagOne, Comment, Comments, MdEditor },
   data() {
     return {
       article: {},
@@ -62,11 +64,14 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .articleOne {
   display: inline-block;
   top: 10%;
   width: inherit;
   line-height: 1.6;
+}
+.content {
+  width: 100%;
 }
 </style>

@@ -2,47 +2,47 @@ const HomeConfig = {
     IndexApp: {
         path: '/',
         name: 'index',
-        component: () => import( '@/pages/Home.vue'),
+        component: () => import('@/pages/Home.vue'),
         children: [
             {
                 path: '/',
-                name: 'blogindex',
-                component: () => import( '@/pages/BlogIndex/Index.vue'),
+                name: 'dynamic',
+                component: () => import('@/pages/dynamic/index.vue'),
             },
             {
                 path: '/note',
                 name: 'note',
-                component: () => import( '@/pages/Note/Note.vue'),
+                component: () => import('@/pages/note/index.vue'),
             },
             {
                 path: '/tools',
                 name: 'tools',
-                component: () => import('@/pages/Tools/Tools.vue'),
+                component: () => import('@/pages/tools/index.vue'),
             },
             {
                 path: '/cattery',
                 name: 'cattery',
-                component: () => import('@/pages/Cattery/Cattery.vue'),
+                component: () => import('@/pages/cattery/index.vue'),
             },
             {
                 path: '/friendChain',
                 name: 'friendChain',
-                component: () => import('@/pages/FriendChain/FriendChain.vue'),
+                component: () => import('@/pages/friendChain/index.vue'),
             },
             {
-                path: '/about',
-                name: 'about',
-                component: () => import( '@/pages/Dynamic/Dynamic.vue'),
+                path: '/dynamic',
+                name: 'dynamic',
+                component: () => import('@/pages/dynamic/index.vue'),
             },
             {
                 path: '/setting',
                 name: 'setting',
-                component: () => import('@/pages/BlogSetting/Setting.vue'),
+                component: () => import('@/pages/setting/index.vue'),
             },
             {
                 path: '/article',
                 name: 'article',
-                component: () => import('@/pages/Article/ArticleOne.vue')
+                component: () => import('@/pages/article/index.vue')
             }
         ]
     }

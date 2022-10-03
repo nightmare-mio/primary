@@ -10,6 +10,7 @@
         size="20"
         fill="#000000"
         class="action_cursor pa_5"
+        @click="get"
       />
       <input
         type="text"
@@ -37,6 +38,11 @@ export default {
     };
   },
   methods: {
+    // todo 需要添加回车搜索的方法
+    get() {
+      // todo 模糊搜索查找文章
+      console.log("11");
+    },
     inputIsNull(focus_action) {
       if (focus_action != undefined) {
         this.focus_action = focus_action;
@@ -55,7 +61,6 @@ export default {
 .search-box {
   /* margin: 20px 0 0 0; */
   position: relative;
-  
 }
 .search {
   background-color: #ffffff;
