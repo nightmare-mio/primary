@@ -41,9 +41,11 @@ div {
 .pa_right_10 {
     padding-right: 10px;
 }
+
 .pa_column_10 {
     padding: 10px 0;
 }
+
 .pa_10 {
     padding: 10px;
 }
@@ -62,4 +64,10 @@ div {
 
 .font-grey {
     color: #a1a1a1;
+}
+
+.article_text {
+    line-height: 1.625rem;
+    margin: 0.625rem 0;
+    font-size: 1.128rem;
 }

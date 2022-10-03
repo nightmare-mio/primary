@@ -6,45 +6,33 @@
         v-for="(item, index) in list"
         :key="index"
       >
-        <Article :article="item"></Article>
+        <ArticlePreview :article="item"></ArticlePreview>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Article from "../../components/Article/ArticlePreview.vue";
+import ArticlePreview from "@/components/Article/ArticlePreview.vue";
+import { get } from "@/axios/axios";
+import { articles } from "@/apis/api";
+
 export default {
-  components: { Article },
+  components: { ArticlePreview },
   data() {
     return {
-      list: [
-        {
-          // title: "1-1标题",
-          content: "正文",
-          date: "2022年06月24日",
-          Views: "100",
-          // comment: "5",
-          tags: ["偶遇"],
-        },
-        {
-          // title: "2-1标题",
-          content: "正文",
-          date: "2022年06月24日",
-          Views: "100",
-          // comment: "5",
-          tags: ["感受"],
-        },
-      ],
+      list: [],
     };
+  },mounted() {
+    get(articles.dynamic).then((result) => {
+      this.list=result.data.data;
+    }).catch((err) => {
+    });
   },
 };
 </script>
 
 <style>
-.article-list-box {
-  padding: 40px 40px 0 0;
-}
 .article-list {
   width: inherit;
 }

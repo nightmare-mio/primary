@@ -3,7 +3,7 @@
     <div class="title-box">
       <div class="Squares">
         <h1 class="index-title-1">三三の小屋</h1>
-        <img v-bind:src="img33" class="title-img" />
+        <img v-bind:src="img33" draggable="false" class="title-img" />
       </div>
     </div>
     <Poem></Poem>
@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import Poem from "../Poem.vue";
-import img33 from "../../assets/img/33_正.png";
+import Poem from "../Poem/Poem.vue";
+import img33 from "@/assets/img/33_正.png";
 export default {
   components: { Poem },
   data() {

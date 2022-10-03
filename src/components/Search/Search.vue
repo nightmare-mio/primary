@@ -1,17 +1,20 @@
 <template>
   <div class="search-box">
-    <div @mouseleave="inputIsNull()" class="search pa_5">
+    <div
+      class="search pa_5"
+      @mouseenter="mouse_flag = true"
+      @mouseleave="inputIsNull()"
+    >
       <search
         theme="outline"
         size="20"
         fill="#000000"
         class="action_cursor pa_5"
-        @mouseenter="mouse_flag = true"
       />
       <input
         type="text"
-        :class="mouse_flag ? 'search_input_active' : 'search_input'"
         class="search_input_base"
+        :class="{ search_input_active: mouse_flag, search_input: !mouse_flag }"
         @focus="focus_action = true"
         @blur="inputIsNull(false)"
         v-model="text"
@@ -29,8 +32,8 @@ export default {
   data() {
     return {
       mouse_flag: false,
-      text: "",
       focus_action: false,
+      text: "",
     };
   },
   methods: {
@@ -50,7 +53,9 @@ export default {
 
 <style>
 .search-box {
-  margin: 20px 0 0 0;
+  /* margin: 20px 0 0 0; */
+  position: relative;
+  
 }
 .search {
   background-color: #ffffff;
@@ -65,10 +70,12 @@ export default {
   width: 0px;
 }
 .search_input_base {
+  width: 0px;
   border: none;
   outline: none;
   vertical-align: 5px;
 }
+
 @keyframes search {
   from {
     width: 0px;

@@ -1,17 +1,31 @@
 <template>
   <div class="wrapper">
-    <a class="friendChain" href="">One</a>
-    <a class="friendChain" href="">two</a>
-    <a class="friendChain" href="">One</a>
-    <a class="friendChain" href="">One</a>
-    <a class="friendChain" href="">One</a>
-    <a class="friendChain" href="">One</a>
-    <a class="friendChain" href="">One</a>
+    <div v-for="(item, index) in list" :key="index">
+      <a class="friendChain" :href="item.url" target="_blank">{{
+        item.nameFriendchain
+      }}</a>
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { get } from "@/axios/axios";
+import { friendChain } from "@/apis/api";
+export default {
+  data() {
+    return {
+      list: [],
+    };
+  },
+  mounted() {
+    get(friendChain.get)
+      .then((result) => {
+        console.log(result);
+        this.list = result.data.data;
+      })
+      .catch((err) => {});
+  },
+};
 </script>
 
 <style>

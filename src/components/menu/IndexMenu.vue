@@ -147,12 +147,13 @@ body {
     show 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 #menu-main {
-  display: inline-block;
-  justify-content: end;
+  display: flex;
   position: fixed;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: end;
   width: 10rem;
-  padding-top: 145px;
-  height: 22.5rem;
+  height: 27.4rem;
 }
 .menu-item {
   float: right;

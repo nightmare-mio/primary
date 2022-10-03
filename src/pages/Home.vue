@@ -14,9 +14,9 @@
 </template>
 
 <script>
-import IndexMenu from "../components/menu/IndexMenu.vue";
-import IndexTitle from "../components/Title/IndexTitle.vue";
-import IndexContatcMeun from "../components/contactMe/IndexContatcMeun.vue";
+import IndexMenu from "@/components/menu/IndexMenu.vue";
+import IndexTitle from "@/components/Title/IndexTitle.vue";
+import IndexContatcMeun from "@/components/contactMe/IndexContatcMeun.vue";
 export default {
   components: {
     IndexMenu,

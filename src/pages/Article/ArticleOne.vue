@@ -1,15 +1,14 @@
 <template>
   <div class="articleOne">
-    <ArticleHead>
-      <h1>
-        {{ $route.query.title }}
-      </h1>
-    </ArticleHead>
+    <!-- 头部元素 -->
+    <h1>
+      {{ article.title }}
+    </h1>
     <div class="mr_column_10">
       <span>
         <calendar theme="outline" size="24" fill="#ffffff" class="pa_right_5"
       /></span>
-      <span class="ico_text">{{ article.date }}</span>
+      <span class="ico_text">{{ article.datetime }}</span>
       <span>
         <preview-open
           theme="outline"
@@ -17,18 +16,21 @@
           fill="#ffffff"
           class="pa_right_5"
       /></span>
-      <span class="ico_text">{{ article.Views }}</span>
-      <span v-if="article.comment">
+      <span class="ico_text">{{ article.view }}</span>
+      <span>
         <span>
           <comment theme="outline" size="24" fill="#ffffff" class="pa_right_5"
         /></span>
-        <span class="ico_text">{{ article.comment }}</span>
+        <span class="ico_text">{{ article.numberComment }}</span>
       </span>
       <span>
         <tag-one theme="outline" size="24" fill="#ffffff" class="pa_right_5"
       /></span>
-      <span class="ico_text">{{ article.tags }}</span>
+      <span class="ico_text" v-for="(item, index) in article.tags" :key="index">
+        {{ item }}
+      </span>
     </div>
+    <!-- 正文 -->
     <div class="article_text">
       {{ article.content }}
     </div>
@@ -38,21 +40,24 @@
 
 <script>
 import { Calendar, PreviewOpen, TagOne, Comment } from "@icon-park/vue-next";
-import Comments from "../../components/Comments/Comments.vue";
-import ArticleHead from "../../components/Article/ArticleHead.vue";
+import Comments from "@/components/Comments/Comments.vue";
+import { get } from "@/axios/axios";
+import { articles } from "@/apis/api";
+
 export default {
-  components: { Calendar, PreviewOpen, TagOne, Comment, Comments, ArticleHead },
+  components: { Calendar, PreviewOpen, TagOne, Comment, Comments },
   data() {
     return {
-      article: {
-        title: "标题",
-        content: "正文",
-        date: "2022年06月26日",
-        Views: "100",
-        comment: "5",
-        tags: ["游戏", "研究"],
-      },
+      article: {},
     };
+  },
+
+  mounted() {
+    get(articles.articleid + this.$route.query.idArticle)
+      .then((result) => {
+        this.article = result.data.data;
+      })
+      .catch((err) => {});
   },
 };
 </script>
@@ -62,5 +67,6 @@ export default {
   display: inline-block;
   top: 10%;
   width: inherit;
+  line-height: 1.6;
 }
 </style>
