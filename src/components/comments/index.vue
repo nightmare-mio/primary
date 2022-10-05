@@ -18,17 +18,14 @@
     </div>
     <div class="mr_column_10 clear_float">
       <div class="right_float">
-        <a
-          href="http://www.bootcss.com/"
+        <div
           class="button button-primary button-rounded button-normal login_btn"
-          >使用Github登入</a
+          @click="auth"
         >
+          使用Github登入
+        </div>
         <span
-          class="
-            hero-cta
-            button button-plain button-uppercase button-rounded
-            preview_btn
-          "
+          class="hero-cta button button-plain button-uppercase button-rounded preview_btn"
           >预览</span
         >
       </div>
@@ -45,6 +42,7 @@
 <script>
 import { Github } from "@icon-park/vue-next";
 import Comment from "./comment/index.vue";
+import { get } from "@/axios/axios";
 export default {
   components: {
     Github,
@@ -52,6 +50,14 @@ export default {
   },
   data() {
     return {};
+  },
+  methods: {
+    auth() {
+      const authorize_uri = "https://github.com/login/oauth/authorize";
+      const client_id = "f48220e1b60084879128";
+      const redirect_url = "http://192.168.245.1:8081/api/auth/rallback";
+      window.location.href = `${authorize_uri}?client_id=${client_id}&redirect_url=${redirect_url}`;
+    },
   },
 };
 </script>
@@ -100,5 +106,3 @@ export default {
   float: right;
 }
 </style>
-
-

@@ -15,4 +15,8 @@ const friendChain = {
     get: "/api/friendchain",
 }
 
-export { catalogues, articles, friendChain }
+const auth = {
+    user: "/api/auth/user"
+}
+
+export { catalogues, articles, friendChain, auth }
