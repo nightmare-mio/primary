@@ -1,3 +1,9 @@
+/*
+ * @Author: wanglongwei wanglongwei@yuqiaotech.com
+ * @Date: 2022-07-20 22:05:17
+ * @LastEditTime: 2022-10-25 10:26:18
+ * @Description: 
+ */
 //1、引入axios
 import axios from 'axios';
 import { baseURL } from '@/config/config'
@@ -5,7 +11,7 @@ import { baseURL } from '@/config/config'
 //2、创建axios的实例
 let httpService = axios.create({
     baseURL: baseURL,
-    timeout: 500000
+    timeout: 500000,
 })
 //3、axios的拦截--request
 httpService.interceptors.request.use(config => {
@@ -27,7 +33,7 @@ export function get(url, params = {}) {
         httpService({
             url: url,
             method: 'get',
-            params: params
+            params: params,
         }).then(res => {
             resolve(res);
         }).catch(err => {
@@ -45,7 +51,7 @@ export function post(url, params = {}, responseTypes, headers = { 'Content-Type'
             data: params,
             responseType: responseTypes,
             headers: headers,
-            onDownloadProgress: onDownloadProgress
+            onDownloadProgress: onDownloadProgress,
         }).then(res => {
             resolve(res);
         }).catch(err => {

@@ -19,4 +19,8 @@ const auth = {
     user: "/api/auth/user"
 }
 
-export { catalogues, articles, friendChain, auth }
+const commentapi = {
+    add: '/api/comment'
+}
+
+export { catalogues, articles, friendChain, auth, commentapi }
