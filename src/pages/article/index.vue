@@ -1,3 +1,9 @@
+<!--
+ * @Author: wanglongwei wanglongwei@yuqiaotech.com
+ * @Date: 2022-06-26 12:52:08
+ * @LastEditTime: 2022-10-26 11:39:29
+ * @Description: 
+-->
 <template>
   <div class="articleOne">
     <!-- 头部元素 -->
@@ -39,7 +45,7 @@
         style="padding: 10px"
       />
     </div>
-    <Comments></Comments>
+    <Comments :idArticle="article.id"></Comments>
   </div>
 </template>
 

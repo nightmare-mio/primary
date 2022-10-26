@@ -1,12 +1,20 @@
+<!--
+ * @Author: wanglongwei wanglongwei@yuqiaotech.com
+ * @Date: 2022-07-02 14:17:33
+ * @LastEditTime: 2022-10-26 17:20:14
+ * @Description: 
+-->
 <template>
   <div class="comment-box clear_float">
-    <img src="/33_正.ico" class="avatar-img radius-5px" />
+    <a :href="htmlUrl" target="_blank">
+      <img :src="avatar" class="avatar-img radius-5px" :alt="htmlUrl" />
+    </a>
     <div class="common-textarea view">
       <div>
         <span class="pa_right_10">
-          <a href="https://github.com/nightmare-mio" class="username">用户1</a>
+          <a :href="htmlUrl" class="username" target="_blank">{{ username }}</a>
         </span>
-        <span class="font-grey">1小时前</span>
+        <span class="font-grey">{{ datetime }}</span>
       </div>
       <div class="mr_column_10">
         {{ msg }}
@@ -17,10 +25,15 @@
 
 <script>
 export default {
+  props: {
+    msg: { type: String, default: "评论1" },
+    username: { type: String, default: "用户1" },
+    avatar: { type: String, default: "/33_正.ico" },
+    htmlUrl: { type: String, default: "https://github.com/nightmare-mio" },
+    datetime: { type: String, default: "2022-10-25 00:00:00" },
+  },
   data() {
-    return {
-      msg: "评论1",
-    };
+    return {};
   },
 };
 </script>

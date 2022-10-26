@@ -28,6 +28,7 @@
           </a>
         </span>
       </span>
+      <!-- todo 在此处做字数限制255 致敬一下varchar -->
       <textarea
         class="common-textarea"
         :placeholder="userInfo == null ? '请登入后评论' : '支持markDown语法'"
@@ -63,11 +64,16 @@
         </div>
       </div>
     </div>
-    <div class="pa_column_10">
-      <comment></comment>
-    </div>
-    <div class="pa_column_10">
-      <comment></comment>
+    <div v-if="conlist != null">
+      <div class="pa_column_10" v-for="(item, index) in conlist" :key="index">
+        <comment
+          :msg="item.comment.content"
+          :username="item.login"
+          :avatar="item.avatarUrl"
+          :htmlUrl="item.htmlUrl"
+          :datetime="item.comment.insertDateTime"
+        ></comment>
+      </div>
     </div>
   </div>
 </template>
@@ -75,7 +81,7 @@
 <script>
 import { Github } from "@icon-park/vue-next";
 import Comment from "./comment/index.vue";
-import { post } from "@/axios/axios";
+import { get, post } from "@/axios/axios";
 import { auth, commentapi } from "@/apis/api";
 
 export default {
@@ -83,8 +89,25 @@ export default {
     Github,
     Comment,
   },
+  props: {
+    idArticle: { type: String },
+  },
+  watch: {
+    idArticle: {
+      handler: function (newValue, oldValue) {
+        this.id = newValue;
+        this.getRelease(newValue);
+      },
+    },
+  },
   data() {
-    return { userInfo: null, content: null };
+    return {
+      id: null,
+      userInfo: null,
+      content: null,
+      token: null,
+      conlist: null,
+    };
   },
   methods: {
     auth() {
@@ -94,7 +117,7 @@ export default {
       window.location.href = `${authorize_uri}?client_id=${client_id}&redirect_url=${redirect_url}`;
     },
     user() {
-      var token = this.$cookies.get("token");
+      var token = this.token;
       post(auth.user, { token: token }).then((result) => {
         console.log("result===========", result.data.data);
         // TODO 把用户信息保存到user中
@@ -108,13 +131,33 @@ export default {
       // TODO 预览
     },
     release() {
-      post(commentapi.add, { content: this.content })
-        .then((result) => {})
+      var content = this.content;
+      var idUser = this.userInfo.id;
+      var id = this.id;
+      post(commentapi.add, {
+        content: content,
+        idUser: idUser,
+        idArticle: id,
+      }).then((result) => {
+        if (result.data.msg == "添加成功") {
+          this.content = null;
+          // TODO 刷新页面 或者将评论增加
+        }
+      });
+    },
+    getToken() {
+      this.token = this.$cookies.get("token");
+    },
+    getRelease(id) {
+      get(commentapi.add + "/" + id)
+        .then((result) => {
+          this.conlist = result.data.data;
+        })
         .catch((err) => {});
-      // TODO 评论
     },
   },
   mounted() {
+    this.getToken();
     this.user();
   },
 };
