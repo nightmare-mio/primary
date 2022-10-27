@@ -6,9 +6,14 @@
         <!-- todo 未登入时候隐藏  -->
         <span v-if="userInfo == null"> github用户名 </span>
         <!-- todo 添加登出操作 -->
-        <span v-else class="action_cursor" @click="open(userInfo.html_url)">
+        <a
+          v-else
+          :href="userInfo.html_url"
+          target="_blank"
+          style="text-decoration: none; color: #fff"
+        >
           {{ userInfo.login }}
-        </span>
+        </a>
       </div>
     </div>
     <div class="gt-header">
@@ -29,13 +34,23 @@
         </span>
       </span>
       <!-- todo 在此处做字数限制255 致敬一下varchar -->
-      <textarea
-        class="common-textarea"
-        :placeholder="userInfo == null ? '请登入后评论' : '支持markDown语法'"
-        style="height: 5rem"
-        v-model="content"
-      >
-      </textarea>
+      <div class="block">
+        <textarea
+          class="textarea"
+          :placeholder="userInfo == null ? '请登入后评论' : '支持markDown语法'"
+          v-model="content"
+          v-if="readonlymodel == false"
+        >
+        </textarea>
+        <div v-else class="kuang">
+          <md-editor
+            class="md-preview"
+            v-model="content"
+            previewOnly
+            style="width: 852px"
+          />
+        </div>
+      </div>
     </div>
     <div class="mr_column_10 clear_float">
       <div class="right_float">
@@ -47,19 +62,30 @@
           使用Github登入
         </div>
         <div v-else>
-          <span
-            class="hero-cta button button-plain button-uppercase button-rounded preview_btn"
-            @click="readonly"
-          >
-            预览
-            <!-- todo md预览 -->
+          <span>
+            <!-- todo 预览和编辑太像了，至少颜色上做更改 明显点  -->
+            <span
+              class="hero-cta button button-plain button-uppercase button-rounded preview_btn"
+              @click="readonlymodel = true"
+              v-if="readonlymodel == false"
+            >
+              预览
+            </span>
+            <span
+              class="hero-cta button button-plain button-uppercase button-rounded preview_btn"
+              @click="readonlymodel = false"
+              v-else
+            >
+              编辑
+            </span>
           </span>
+
           <span
             class="hero-cta button button-plain button-uppercase button-rounded preview_btn"
             @click="release"
           >
             评论
-            <!-- todo 评论 -->
+            <!-- todo 回复 -->
           </span>
         </div>
       </div>
@@ -67,6 +93,7 @@
     <div v-if="conlist != null">
       <div class="pa_column_10" v-for="(item, index) in conlist" :key="index">
         <comment
+          :id="item.comment.id"
           :msg="item.comment.content"
           :username="item.login"
           :avatar="item.avatarUrl"
@@ -83,12 +110,25 @@ import { Github } from "@icon-park/vue-next";
 import Comment from "./comment/index.vue";
 import { get, post } from "@/axios/axios";
 import { auth, commentapi } from "@/apis/api";
+import MdEditor from "md-editor-v3";
 
+// 用于新标签打开
+MdEditor.config({
+  markedRenderer(renderer) {
+    renderer.link = (href, title, text) => {
+      return `<a href="${href}" target="_blank">${text}</a>`;
+    };
+
+    return renderer;
+  },
+});
 export default {
   components: {
     Github,
     Comment,
+    MdEditor,
   },
+
   props: {
     idArticle: { type: String },
   },
@@ -99,6 +139,24 @@ export default {
         this.getRelease(newValue);
       },
     },
+    idComment: {
+      handler: function (newValue, oldValue) {
+        if (newValue != null) {
+          this.content = "";
+          var item = this.conlist.find((item) => {
+            return item.comment.id == newValue;
+          });
+          this.content = "[@" + item.login + "](" + item.htmlUrl + ")";
+        }
+      },
+    },
+    content: {
+      handler: function (newValue, oldValue) {
+        if (newValue == "") {
+          this.idComment = null;
+        }
+      },
+    },
   },
   data() {
     return {
@@ -107,6 +165,8 @@ export default {
       content: null,
       token: null,
       conlist: null,
+      idComment: null,
+      readonlymodel: false,
     };
   },
   methods: {
@@ -119,25 +179,22 @@ export default {
     user() {
       var token = this.token;
       post(auth.user, { token: token }).then((result) => {
-        console.log("result===========", result.data.data);
-        // TODO 把用户信息保存到user中
         this.userInfo = result.data.data;
       });
     },
     open(url) {
       window.open(url, "_blank");
     },
-    readonly() {
-      // TODO 预览
-    },
     release() {
       var content = this.content;
       var idUser = this.userInfo.id;
       var id = this.id;
+      var parent = this.idComment;
       post(commentapi.add, {
         content: content,
         idUser: idUser,
         idArticle: id,
+        parent: parent,
       }).then((result) => {
         if (result.data.msg == "添加成功") {
           this.content = null;
@@ -155,6 +212,9 @@ export default {
         })
         .catch((err) => {});
     },
+    replyToP(id) {
+      this.idComment = id;
+    },
   },
   mounted() {
     this.getToken();
@@ -163,7 +223,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .comments-box {
   margin: 20px 0 0 0;
   display: inline-block;
@@ -176,17 +236,21 @@ export default {
 .avatar {
   vertical-align: top;
 }
-.common-textarea {
+.textarea {
   background-color: var(--black);
   line-height: 1.2;
   font-family: "楷体";
   font-size: 18px;
   color: #ffffff;
-  padding: 10px;
+  height: 100px;
   width: 52rem;
+  padding: 10px;
   resize: none;
-  float: right;
 }
+.width_52 {
+  width: 52rem;
+}
+
 .login_btn {
   height: 35px;
   line-height: 35px;
@@ -200,10 +264,27 @@ export default {
   margin-left: 15px;
   display: inline-block;
 }
+.block {
+  display: inline-block;
+  float: right;
+}
+.kuang {
+  border: 1px solid;
+}
 .github_username {
   float: right;
 }
 .right_float {
   float: right;
+}
+.md-preview {
+  background-color: var(--black);
+  line-height: 1.2;
+  font-family: "楷体";
+  font-size: 18px;
+  color: #ffffff;
+  width: 52rem;
+  padding: 10px;
+  resize: none;
 }
 </style>

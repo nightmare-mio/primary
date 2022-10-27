@@ -1,7 +1,7 @@
 <!--
  * @Author: wanglongwei wanglongwei@yuqiaotech.com
  * @Date: 2022-07-02 14:17:33
- * @LastEditTime: 2022-10-26 17:20:14
+ * @LastEditTime: 2022-10-27 15:38:03
  * @Description: 
 -->
 <template>
@@ -15,7 +15,12 @@
           <a :href="htmlUrl" class="username" target="_blank">{{ username }}</a>
         </span>
         <span class="font-grey">{{ datetime }}</span>
+        <!-- todo 回复功能 移动到最右边 水平对齐-->
+        <span class="action_cursor">
+          <back-one theme="outline" size="24" fill="#4a90e2" @click="reply" />
+        </span>
       </div>
+
       <div class="mr_column_10">
         {{ msg }}
       </div>
@@ -24,8 +29,12 @@
 </template>
 
 <script>
+import { BackOne } from "@icon-park/vue-next";
+
 export default {
+  components: { BackOne },
   props: {
+    id: { type: String, require: true },
     msg: { type: String, default: "评论1" },
     username: { type: String, default: "用户1" },
     avatar: { type: String, default: "/33_正.ico" },
@@ -33,12 +42,18 @@ export default {
     datetime: { type: String, default: "2022-10-25 00:00:00" },
   },
   data() {
-    return {};
+    return { idComment: null };
   },
+  methods: {
+    reply() {
+      this.$parent.replyToP(this.id);
+    },
+  },
+  mounted() {},
 };
 </script>
 
-<style>
+<style scoped>
 .view {
   border: 1px solid;
   background-color: var(--black);
@@ -55,5 +70,50 @@ export default {
 }
 .radius-5px {
   border-radius: 5px;
+}
+.comments-box {
+  margin: 20px 0 0 0;
+  display: inline-block;
+  width: inherit;
+}
+.gt-header {
+  display: inline-block;
+  width: inherit;
+}
+.avatar {
+  vertical-align: top;
+}
+.textarea {
+}
+
+.common-textarea {
+  background-color: var(--black);
+  line-height: 1.2;
+  font-family: "楷体";
+  font-size: 18px;
+  color: #ffffff;
+  padding: 10px;
+  width: 52rem;
+  resize: none;
+  float: right;
+}
+.login_btn {
+  height: 35px;
+  line-height: 35px;
+  padding: 0 20px;
+  background-color: #3e8ab2;
+}
+.preview_btn {
+  height: 35px;
+  line-height: 35px;
+  padding: 0 20px;
+  margin-left: 15px;
+  display: inline-block;
+}
+.github_username {
+  float: right;
+}
+.right_float {
+  float: right;
 }
 </style>
