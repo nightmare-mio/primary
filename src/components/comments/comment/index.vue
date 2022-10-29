@@ -1,28 +1,44 @@
 <!--
  * @Author: wanglongwei wanglongwei@yuqiaotech.com
  * @Date: 2022-07-02 14:17:33
- * @LastEditTime: 2022-10-27 15:38:03
+ * @LastEditTime: 2022-10-29 15:59:26
  * @Description: 
 -->
 <template>
-  <div class="comment-box clear_float">
+  <div class="clear_float">
     <a :href="htmlUrl" target="_blank">
       <img :src="avatar" class="avatar-img radius-5px" :alt="htmlUrl" />
     </a>
-    <div class="common-textarea view">
-      <div>
+    <div class="common-textarea view block col90">
+      <div class="block">
         <span class="pa_right_10">
           <a :href="htmlUrl" class="username" target="_blank">{{ username }}</a>
         </span>
         <span class="font-grey">{{ datetime }}</span>
         <!-- todo 回复功能 移动到最右边 水平对齐-->
+        <!-- todo 回复功能 点击后跳转到输入框 -->
         <span class="action_cursor">
           <back-one theme="outline" size="24" fill="#4a90e2" @click="reply" />
         </span>
       </div>
-
-      <div class="mr_column_10">
-        {{ msg }}
+      <div>
+        <md-editor
+          class="md-preview"
+          v-model="msg"
+          previewOnly
+        />
+      </div>
+      <div class="pa_column_5" v-for="(item, index) in children" :key="index">
+        <comment
+          :id="item.comment.id"
+          :msg="item.comment.content"
+          :username="item.login"
+          :avatar="item.avatarUrl"
+          :htmlUrl="item.htmlUrl"
+          :datetime="item.comment.insertDateTime"
+          :children="item.children"
+          :parent="item.comment.parent"
+        ></comment>
       </div>
     </div>
   </div>
@@ -30,9 +46,11 @@
 
 <script>
 import { BackOne } from "@icon-park/vue-next";
+import MdEditor from "md-editor-v3";
 
 export default {
-  components: { BackOne },
+  name: "comment",
+  components: { BackOne, MdEditor },
   props: {
     id: { type: String, require: true },
     msg: { type: String, default: "评论1" },
@@ -40,13 +58,20 @@ export default {
     avatar: { type: String, default: "/33_正.ico" },
     htmlUrl: { type: String, default: "https://github.com/nightmare-mio" },
     datetime: { type: String, default: "2022-10-25 00:00:00" },
+    children: { type: Array, default: [] },
+    parent: { type: String, default: null },
   },
   data() {
     return { idComment: null };
   },
   methods: {
     reply() {
-      this.$parent.replyToP(this.id);
+      var _this = this;
+      if (_this.$parent.conlist == undefined) {
+        _this.$parent.$parent.replyToP(this.id, this.parent);
+      } else {
+        _this.$parent.replyToP(this.id);
+      }
     },
   },
   mounted() {},
@@ -71,49 +96,22 @@ export default {
 .radius-5px {
   border-radius: 5px;
 }
-.comments-box {
-  margin: 20px 0 0 0;
-  display: inline-block;
-  width: inherit;
-}
-.gt-header {
-  display: inline-block;
-  width: inherit;
-}
-.avatar {
-  vertical-align: top;
-}
-.textarea {
-}
-
 .common-textarea {
+  line-height: 1.5;
+  font-size: 18px;
+  padding: 10px;
+  float: right;
+}
+.block {
+  display: inline-block;
+}
+.col90 {
+  width: 90%;
+}
+.md-preview {
   background-color: var(--black);
   line-height: 1.2;
   font-family: "楷体";
   font-size: 18px;
-  color: #ffffff;
-  padding: 10px;
-  width: 52rem;
-  resize: none;
-  float: right;
-}
-.login_btn {
-  height: 35px;
-  line-height: 35px;
-  padding: 0 20px;
-  background-color: #3e8ab2;
-}
-.preview_btn {
-  height: 35px;
-  line-height: 35px;
-  padding: 0 20px;
-  margin-left: 15px;
-  display: inline-block;
-}
-.github_username {
-  float: right;
-}
-.right_float {
-  float: right;
 }
 </style>

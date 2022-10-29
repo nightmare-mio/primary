@@ -85,7 +85,6 @@
             @click="release"
           >
             评论
-            <!-- todo 回复 -->
           </span>
         </div>
       </div>
@@ -99,6 +98,8 @@
           :avatar="item.avatarUrl"
           :htmlUrl="item.htmlUrl"
           :datetime="item.comment.insertDateTime"
+          :children="item.children"
+          :parent="item.comment.parent"
         ></comment>
       </div>
     </div>
@@ -143,10 +144,22 @@ export default {
       handler: function (newValue, oldValue) {
         if (newValue != null) {
           this.content = "";
-          var item = this.conlist.find((item) => {
+          var _this = this;
+          var parent = _this.parent;
+          debugger;
+          var array = this.conlist;
+          if (parent != null) {
+            let item = array.find((item) => {
+              return item.comment.id == parent;
+            });
+            array = item.children;
+          }
+
+          var item = array.find((item) => {
             return item.comment.id == newValue;
           });
-          this.content = "[@" + item.login + "](" + item.htmlUrl + ")";
+          var login = item.login;
+          this.content = "[@" + login + "](" + item.htmlUrl + ")";
         }
       },
     },
@@ -154,6 +167,7 @@ export default {
       handler: function (newValue, oldValue) {
         if (newValue == "") {
           this.idComment = null;
+          this.parent = null;
         }
       },
     },
@@ -167,6 +181,7 @@ export default {
       conlist: null,
       idComment: null,
       readonlymodel: false,
+      parent: null,
     };
   },
   methods: {
@@ -190,6 +205,9 @@ export default {
       var idUser = this.userInfo.id;
       var id = this.id;
       var parent = this.idComment;
+      if (this.parent != null) {
+        parent = this.parent;
+      }
       post(commentapi.add, {
         content: content,
         idUser: idUser,
@@ -198,7 +216,7 @@ export default {
       }).then((result) => {
         if (result.data.msg == "添加成功") {
           this.content = null;
-          // TODO 刷新页面 或者将评论增加
+          this.$router.go(0)
         }
       });
     },
@@ -212,8 +230,10 @@ export default {
         })
         .catch((err) => {});
     },
-    replyToP(id) {
+    replyToP(id, parent) {
+      debugger;
       this.idComment = id;
+      this.parent = parent;
     },
   },
   mounted() {
