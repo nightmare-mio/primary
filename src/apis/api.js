@@ -1,3 +1,9 @@
+/*
+ * @Author: wanglongwei wanglongwei@yuqiaotech.com
+ * @Date: 2022-07-17 23:08:21
+ * @LastEditTime: 2022-11-15 00:28:50
+ * @Description: 
+ */
 
 
 const catalogues = {
@@ -22,5 +28,8 @@ const auth = {
 const commentapi = {
     add: '/api/comment'
 }
+const poem = {
+    kuangsan: '/api/poem/kuangsan'
+}
 
-export { catalogues, articles, friendChain, auth, commentapi }
+export { catalogues, articles, friendChain, auth, commentapi, poem }
