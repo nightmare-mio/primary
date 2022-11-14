@@ -13,12 +13,6 @@
     clear: both;
 }
 
-/* 文字上移与ico平齐 */
-.ico_text {
-    vertical-align: 5px;
-    padding: 0 10px 0 0;
-    letter-spacing: 1px;
-}
 
 /* 右盒子 */
 .article-list-box {

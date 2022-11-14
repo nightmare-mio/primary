@@ -1,7 +1,7 @@
 <!--
  * @Author: wanglongwei wanglongwei@yuqiaotech.com
  * @Date: 2022-06-26 12:52:08
- * @LastEditTime: 2022-10-27 15:16:36
+ * @LastEditTime: 2022-11-14 12:57:50
  * @Description: 
 -->
 <template>
@@ -11,30 +11,24 @@
       {{ article.title }}
     </h1>
     <div class="mr_column_10">
-      <span>
-        <calendar theme="outline" size="24" fill="#ffffff" class="pa_right_5"
-      /></span>
-      <span class="ico_text">{{ article.datetime }}</span>
-      <span>
-        <preview-open
-          theme="outline"
-          size="24"
-          fill="#ffffff"
-          class="pa_right_5"
-      /></span>
-      <span class="ico_text">{{ article.view }}</span>
-      <span>
+      <n-space class="btnsss">
+        <calendar theme="outline" size="24" fill="#ffffff" />
+        {{ article.datetime }}
+        <preview-open theme="outline" size="24" fill="#ffffff" />
+        {{ article.view }}
+        <comment theme="outline" size="24" fill="#ffffff" />
+        {{ article.numberComment }}
+        <tag-one theme="outline" size="24" fill="#ffffff" />
         <span>
-          <comment theme="outline" size="24" fill="#ffffff" class="pa_right_5"
-        /></span>
-        <span class="ico_text">{{ article.numberComment }}</span>
-      </span>
-      <span>
-        <tag-one theme="outline" size="24" fill="#ffffff" class="pa_right_5"
-      /></span>
-      <span class="ico_text" v-for="(item, index) in article.tags" :key="index">
-        {{ item }}
-      </span>
+          <span
+            class="ico_text"
+            v-for="(item, index) in article.tags"
+            :key="index"
+          >
+            {{ item.nameTag }}
+          </span>
+        </span>
+      </n-space>
     </div>
     <!-- 正文 -->
     <div class="content">
@@ -51,6 +45,7 @@
 
 <script>
 import { Calendar, PreviewOpen, TagOne, Comment } from "@icon-park/vue-next";
+import { NSpace } from "naive-ui";
 import Comments from "@/components/comments/index.vue";
 import { get } from "@/axios/axios";
 import { articles } from "@/apis/api";
@@ -58,7 +53,15 @@ import MdEditor from "md-editor-v3";
 import "md-editor-v3/lib/style.css";
 
 export default {
-  components: { Calendar, PreviewOpen, TagOne, Comment, Comments, MdEditor },
+  components: {
+    Calendar,
+    PreviewOpen,
+    TagOne,
+    Comment,
+    Comments,
+    MdEditor,
+    NSpace,
+  },
   data() {
     return {
       article: {},
@@ -84,5 +87,8 @@ export default {
 }
 .content {
   width: 100%;
+}
+.btnsss {
+  vertical-align: text-bottom;
 }
 </style>

@@ -5,21 +5,21 @@
       v-for="(item, index) in data"
       :key="index"
       :class="{ show: action[index] }"
-      class="menu-item"
       @mouseleave="action[index] = false"
       @click="$router.push(item.routeIndex)"
     >
-      <span v-if="action[index]" class="ico_text action_cursor">{{
-        item.textIndex
-      }}</span>
-      <component
-        :is="item.iconIndex"
-        theme="outline"
-        size="22"
-        fill="#ffffff"
-        @mouseenter="action[index] = true"
-        class="action_cursor"
-      />
+      <n-space class="pa_column_10 action_cursor">
+        <div v-if="action[index]">
+          {{ item.textIndex }}
+        </div>
+        <component
+          :is="item.iconIndex"
+          theme="outline"
+          size="22"
+          fill="#ffffff"
+          @mouseenter="action[index] = true"
+        />
+      </n-space>
     </div>
   </div>
 </template>
@@ -36,6 +36,7 @@ import {
 } from "@icon-park/vue-next";
 import { get } from "@/axios/axios";
 import { catalogues } from "@/apis/api";
+import { NSpace } from "naive-ui";
 
 export default {
   components: {
@@ -46,29 +47,18 @@ export default {
     User,
     SettingConfig,
     Cat,
+    NSpace,
   },
   data() {
     return {
       action: [], //用于动画
-      router_url: {
-        dashboard: "/",
-        note: "note",
-        tools: "tools",
-        cattery: "cattery",
-        friendChain: "friendChain",
-        dynamic: "dynamic",
-        setting: "setting",
-      },
       data: [],
     };
   },
   mounted() {
-    get(catalogues.get, { type: "目录" })
-      .then((result) => {
-        this.data = result.data.data;
-        console.log(result.data.data);
-      })
-      .catch((err) => {});
+    get(catalogues.get, { type: "目录" }).then((result) => {
+      this.data = result.data.data;
+    });
   },
 };
 </script>
@@ -114,5 +104,9 @@ body {
   clear: both;
   padding: 8px;
   /*存在换行符，有具体大小，所以会产生间隙*/
+}
+
+.action_cursor {
+  cursor: pointer;
 }
 </style>

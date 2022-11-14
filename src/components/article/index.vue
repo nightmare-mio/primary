@@ -4,32 +4,40 @@
       {{ article.title }}
     </h2>
     <div class="article_text">{{ article.content }}</div>
+
     <div>
-      <calendar theme="outline" size="20" fill="#ffffff" class="pa_right_5" />
-      <span class="ico_text">{{ article.datetime }}</span>
-      <preview-open
-        theme="outline"
-        size="20"
-        fill="#ffffff"
-        class="pa_right_5"
-      />
-      <span class="ico_text">{{ article.view }}</span>
-      <span v-if="article.comment">
-        <comment theme="outline" size="20" fill="#ffffff" class="pa_right_5" />
-        <span class="ico_text">{{ article.comment }}</span>
-      </span>
-      <tag-one theme="outline" size="20" fill="#ffffff" class="pa_right_5" />
-      <span class="ico_text" v-for="(item, index) in article.tags" :key="index">
-        {{ item }}  
-      </span>
+      <n-space>
+        <calendar theme="outline" size="20" fill="#ffffff" />
+        {{ article.datetime }}
+        <preview-open theme="outline" size="20" fill="#ffffff" />
+        {{ article.view }}
+        <comment
+          theme="outline"
+          size="20"
+          fill="#ffffff"
+          v-if="article.numberComment"
+        />
+        <span v-if="article.numberComment">
+          {{ article.numberComment }}
+        </span>
+        <tag-one theme="outline" size="20" fill="#ffffff" />
+        <span
+          class="ico_text"
+          v-for="(item, index) in article.tags"
+          :key="index"
+        >
+          {{ item.nameTag }}
+        </span>
+      </n-space>
     </div>
   </div>
 </template>
 
 <script>
 import { Calendar, PreviewOpen, TagOne, Comment } from "@icon-park/vue-next";
+import { NSpace } from "naive-ui";
 export default {
-  components: { Calendar, PreviewOpen, TagOne, Comment },
+  components: { Calendar, PreviewOpen, TagOne, Comment, NSpace },
   props: {
     article: { type: Object },
   },
@@ -43,7 +51,7 @@ export default {
 </script>
 
 <style>
-.italic{
+.italic {
   font-style: italic;
 }
 .article {
