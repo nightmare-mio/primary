@@ -112,6 +112,7 @@ import Comment from "./comment/index.vue";
 import { get, post } from "@/axios/axios";
 import { auth, commentapi } from "@/apis/api";
 import MdEditor from "md-editor-v3";
+import { CLIENTID, REDIRECTURI } from "@/config/config";
 
 // 用于新标签打开
 MdEditor.config({
@@ -187,9 +188,9 @@ export default {
   methods: {
     auth() {
       const authorize_uri = "https://github.com/login/oauth/authorize";
-      const client_id = "f48220e1b60084879128";
-      const redirect_url = "http://localhost:8081/api/auth/rallback";
-      window.location.href = `${authorize_uri}?client_id=${client_id}&redirect_url=${redirect_url}`;
+      const client_id = CLIENTID;
+      const redirect_uri = REDIRECTURI + "/" + this.$route.query.idArticle;
+      window.location.href = `${authorize_uri}?client_id=${client_id}&redirect_uri=${redirect_uri}`;
     },
     user() {
       var token = this.token;
@@ -216,7 +217,7 @@ export default {
       }).then((result) => {
         if (result.data.msg == "添加成功") {
           this.content = null;
-          this.$router.go(0)
+          this.$router.go(0);
         }
       });
     },

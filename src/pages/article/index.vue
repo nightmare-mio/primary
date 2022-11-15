@@ -1,7 +1,7 @@
 <!--
  * @Author: wanglongwei wanglongwei@yuqiaotech.com
  * @Date: 2022-06-26 12:52:08
- * @LastEditTime: 2022-11-14 12:57:50
+ * @LastEditTime: 2022-11-15 16:24:34
  * @Description: 
 -->
 <template>
@@ -20,13 +20,15 @@
         {{ article.numberComment }}
         <tag-one theme="outline" size="24" fill="#ffffff" />
         <span>
-          <span
-            class="ico_text"
-            v-for="(item, index) in article.tags"
-            :key="index"
-          >
-            {{ item.nameTag }}
-          </span>
+          <n-space size="small">
+            <span
+              class="ico_text"
+              v-for="(item, index) in article.tags"
+              :key="index"
+            >
+              {{ item.nameTag }}
+            </span>
+          </n-space>
         </span>
       </n-space>
     </div>
