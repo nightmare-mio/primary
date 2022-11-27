@@ -189,7 +189,7 @@ export default {
     auth() {
       const authorize_uri = "https://github.com/login/oauth/authorize";
       const client_id = CLIENTID;
-      const redirect_uri = REDIRECTURI + "/" + this.$route.query.idArticle;
+      const redirect_uri = REDIRECTURI + "/" + this.$route.params.id;
       window.location.href = `${authorize_uri}?client_id=${client_id}&redirect_uri=${redirect_uri}`;
     },
     user() {

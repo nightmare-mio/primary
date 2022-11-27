@@ -1,7 +1,7 @@
 <!--
  * @Author: wanglongwei wanglongwei@yuqiaotech.com
  * @Date: 2022-06-26 12:52:08
- * @LastEditTime: 2022-11-15 16:24:34
+ * @LastEditTime: 2022-11-24 18:21:12
  * @Description: 
 -->
 <template>
@@ -71,7 +71,7 @@ export default {
   },
 
   mounted() {
-    get(articles.articleid + this.$route.query.idArticle)
+    get(articles.articleid + this.$route.params.id)
       .then((result) => {
         this.article = result.data.data;
       })

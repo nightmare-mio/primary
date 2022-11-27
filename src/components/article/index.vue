@@ -1,3 +1,9 @@
+<!--
+ * @Author: wanglongwei wanglongwei@yuqiaotech.com
+ * @Date: 2022-06-24 16:11:46
+ * @LastEditTime: 2022-11-24 18:13:32
+ * @Description: 
+-->
 <template>
   <div @click="toArticle()">
     <h2 class="italic">
@@ -44,7 +50,9 @@ export default {
   methods: {
     toArticle() {
       // 组件之间的值传递
-      this.$router.push("/article?idArticle=" + this.article.id);
+      this.$router.push({
+        path: "/article/"+this.article.id,
+      });
     },
   },
 };
