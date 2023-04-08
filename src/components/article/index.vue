@@ -1,7 +1,7 @@
 <!--
  * @Author: wanglongwei wanglongwei@yuqiaotech.com
  * @Date: 2022-06-24 16:11:46
- * @LastEditTime: 2022-11-24 18:13:32
+ * @LastEditTime: 2023-02-08 16:02:21
  * @Description: 
 -->
 <template>
@@ -9,7 +9,7 @@
     <h2 class="italic">
       {{ article.title }}
     </h2>
-    <div class="article_text">{{ article.content }}</div>
+    <div class="article_text">{{ article.introduction }}</div>
 
     <div>
       <n-space>
