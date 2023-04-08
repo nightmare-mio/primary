@@ -24,7 +24,7 @@ export default {
       list: [],
     };
   },mounted() {
-    get(articles.dynamic).then((result) => {
+    get(articles.dynamic,{condition:""}).then((result) => {
       this.list=result.data.data;
     }).catch((err) => {
     });

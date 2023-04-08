@@ -4,7 +4,7 @@
  * @LastEditTime: 2022-11-25 11:15:51
  * @Description: 
  */
-const ENV = "test";
+const ENV = "dev";
 
 var REDIRECTURI;
 var baseURL;

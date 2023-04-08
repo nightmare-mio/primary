@@ -18,6 +18,7 @@
         :class="{ search_input_active: mouse_flag, search_input: !mouse_flag }"
         @focus="focus_action = true"
         @blur="inputIsNull(false)"
+        @keyup.enter="get"
         v-model="text"
       />
     </div>
@@ -38,10 +39,9 @@ export default {
     };
   },
   methods: {
-    // todo 需要添加回车搜索的方法
     get() {
-      // todo 模糊搜索查找文章
       console.log("11");
+      this.$parent.getAndQuery(this.text);
     },
     inputIsNull(focus_action) {
       if (focus_action != undefined) {
@@ -50,6 +50,7 @@ export default {
       if (this.focus_action === false) {
         if (this.text === "") {
           this.mouse_flag = false;
+          this.get();
         }
       }
     },
