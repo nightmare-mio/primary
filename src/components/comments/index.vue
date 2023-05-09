@@ -4,7 +4,7 @@
       <!-- todo 美化样式 -->
       <div class="github_username">
         <!-- todo 未登入时候隐藏  -->
-        <span v-if="userInfo == null"> github用户名 </span>
+        <span v-if="userInfo == null"> 游客 </span>
         <!-- todo 添加登出操作 -->
         <a
           v-else
@@ -54,38 +54,58 @@
     </div>
     <div class="mr_column_10 clear_float">
       <div class="right_float">
-        <div
-          class="button button-primary button-rounded button-normal login_btn"
-          @click="auth"
-          v-if="userInfo == null"
-        >
-          使用Github登入
-        </div>
-        <div v-else>
+        <n-space justify="space-between">
+          <n-button
+            class="button button-primary button-rounded button-normal login_btn"
+            style="margin-right: 10px"
+            @click="auth"
+            v-if="userInfo == null"
+            >使用Github登入</n-button
+          >
+          <n-button
+            class="button button-primary button-rounded button-normal login_btn"
+            style="margin-right: 10px"
+            @click="authQQ"
+            v-if="userInfo == null"
+            >使用QQ登入</n-button
+          >
+          <n-button
+            class="button button-primary button-rounded button-normal login_btn"
+            style="margin-right: 10px"
+            @click="authWX"
+            v-if="userInfo == null"
+            >使用WX登入</n-button
+          >
+        </n-space>
+
+        <div v-if="userInfo != null">
           <span>
             <!-- todo 预览和编辑太像了，至少颜色上做更改 明显点  -->
-            <span
+            <n-button
               class="hero-cta button button-plain button-uppercase button-rounded preview_btn"
               @click="readonlymodel = true"
               v-if="readonlymodel == false"
             >
               预览
-            </span>
-            <span
+            </n-button>
+            <n-button
               class="hero-cta button button-plain button-uppercase button-rounded preview_btn"
               @click="readonlymodel = false"
               v-else
             >
               编辑
-            </span>
+            </n-button>
           </span>
-
-          <span
+          <n-button
             class="hero-cta button button-plain button-uppercase button-rounded preview_btn"
             @click="release"
+            >评论</n-button
           >
-            评论
-          </span>
+          <n-button
+            class="hero-cta button button-plain button-uppercase button-rounded preview_btn"
+            @click="logout"
+            >登出</n-button
+          >
         </div>
       </div>
     </div>
@@ -186,6 +206,15 @@ export default {
     };
   },
   methods: {
+    logout() {
+      // TODO 登出
+    },
+    authQQ() {
+      // TODO qq授权
+    },
+    authWX() {
+      // TODO Wx授权
+    },
     auth() {
       const authorize_uri = "https://github.com/login/oauth/authorize";
       const client_id = CLIENTID;
