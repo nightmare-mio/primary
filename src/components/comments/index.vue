@@ -62,7 +62,7 @@
             v-if="userInfo == null"
             >使用Github登入</n-button
           >
-          <n-button
+          <!-- <n-button
             class="button button-primary button-rounded button-normal login_btn"
             style="margin-right: 10px"
             @click="authQQ"
@@ -75,7 +75,7 @@
             @click="authWX"
             v-if="userInfo == null"
             >使用WX登入</n-button
-          >
+          > -->
         </n-space>
 
         <div v-if="userInfo != null">
@@ -132,8 +132,9 @@ import Comment from "./comment/index.vue";
 import { get, post } from "@/axios/axios";
 import { auth, commentapi } from "@/apis/api";
 import MdEditor from "md-editor-v3";
-import { CLIENTID, REDIRECTURI } from "@/config/config";
 
+var CLIENTID=import.meta.env.VITE_CLIENTID;  
+var REDIRECTURI=import.meta.env.VITE_REDIRECTURI;
 // 用于新标签打开
 MdEditor.config({
   markedRenderer(renderer) {
