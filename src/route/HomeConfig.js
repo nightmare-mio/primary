@@ -1,9 +1,3 @@
-/*
- * @Author: wanglongwei wanglongwei@yuqiaotech.com
- * @Date: 2022-06-19 16:23:14
- * @LastEditTime: 2022-11-24 18:15:47
- * @Description: 
- */
 const HomeConfig = {
     IndexApp: {
         path: '/',

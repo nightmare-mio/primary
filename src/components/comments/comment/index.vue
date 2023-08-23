@@ -1,9 +1,4 @@
-<!--
- * @Author: wanglongwei wanglongwei@yuqiaotech.com
- * @Date: 2022-07-02 14:17:33
- * @LastEditTime: 2022-10-29 15:59:26
- * @Description: 
--->
+
 <template>
   <div class="clear_float">
     <a :href="htmlUrl" target="_blank">

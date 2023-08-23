@@ -1,9 +1,3 @@
-<!--
- * @Author: wanglongwei wanglongwei@yuqiaotech.com
- * @Date: 2022-06-21 16:19:12
- * @LastEditTime: 2023-04-09 01:57:15
- * @Description: 
--->
 <template>
   <Search></Search>
   <div class="article-list-box">

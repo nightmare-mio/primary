@@ -1,9 +1,3 @@
-<!--
- * @Author: wanglongwei wanglongwei@yuqiaotech.com
- * @Date: 2022-06-21 16:23:53
- * @LastEditTime: 2022-11-27 23:34:19
- * @Description: 
--->
 <template>
   <div class="wrapper">
     <div v-for="(item, index) in list" :key="index">

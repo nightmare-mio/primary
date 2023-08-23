@@ -1,9 +1,4 @@
-/*
- * @Author: wanglongwei wanglongwei@yuqiaotech.com
- * @Date: 2022-07-20 22:05:17
- * @LastEditTime: 2023-08-20 22:29:47
- * @Description: 
- */
+
 //1、引入axios
 import axios from 'axios';
 var baseURL = import.meta.env.VITE_BASEURL

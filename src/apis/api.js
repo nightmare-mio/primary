@@ -1,11 +1,3 @@
-/*
- * @Author: wanglongwei wanglongwei@yuqiaotech.com
- * @Date: 2022-07-17 23:08:21
- * @LastEditTime: 2022-11-15 00:28:50
- * @Description: 
- */
-
-
 const catalogues = {
     get: "/api/catalogue/getindex",
 }

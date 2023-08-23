@@ -1,9 +1,4 @@
-<!--
- * @Author: wanglongwei wanglongwei@yuqiaotech.com
- * @Date: 2022-06-24 16:11:46
- * @LastEditTime: 2023-02-08 16:02:21
- * @Description: 
--->
+
 <template>
   <div @click="toArticle()">
     <h2 class="italic">
