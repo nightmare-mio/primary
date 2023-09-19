@@ -1,7 +1,7 @@
 /*
  * @Author: nightmare-mio wanglongwei2009@qq.com
  * @Date: 2023-08-21 15:26:24
- * @LastEditTime: 2023-08-23 16:24:39
+ * @LastEditTime: 2023-09-19 10:38:44
  * @Description: 
  */
 lockfileVersion: '6.0'
@@ -41,9 +41,6 @@ dependencies:
   vue-cookies:
     specifier: ^1.8.1
     version: registry.npmmirror.com/vue-cookies@1.8.1
-  vue-meta:
-    specifier: ^2.4.0
-    version: registry.npmmirror.com/vue-meta@2.4.0
   vue-router:
     specifier: ^4.0.16
     version: registry.npmmirror.com/vue-router@4.0.16(vue@3.2.37)
@@ -382,13 +379,6 @@ packages:
         optional: true
     dependencies:
       ms: registry.npmmirror.com/ms@2.0.0
-    dev: false
-
-  registry.npmmirror.com/deepmerge@4.3.1:
-    resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/deepmerge/-/deepmerge-4.3.1.tgz}
-    name: deepmerge
-    version: 4.3.1
-    engines: {node: '>=0.10.0'}
     dev: false
 
   registry.npmmirror.com/delayed-stream@1.0.0:
@@ -1031,14 +1021,6 @@ packages:
     resolution: {integrity: sha512-PDq1EaiRRyau5PBQVscXboHW+iWtcG4wRY2UKIz1j0nrjb3KESRU1PUyNUDdOajAwy4RH1IfiNR0suhWRXQdrA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-cookies/-/vue-cookies-1.8.1.tgz}
     name: vue-cookies
     version: 1.8.1
-    dev: false
-
-  registry.npmmirror.com/vue-meta@2.4.0:
-    resolution: {integrity: sha512-XEeZUmlVeODclAjCNpWDnjgw+t3WA6gdzs6ENoIAgwO1J1d5p1tezDhtteLUFwcaQaTtayRrsx7GL6oXp/m2Jw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-meta/-/vue-meta-2.4.0.tgz}
-    name: vue-meta
-    version: 2.4.0
-    dependencies:
-      deepmerge: registry.npmmirror.com/deepmerge@4.3.1
     dev: false
 
   registry.npmmirror.com/vue-router@4.0.16(vue@3.2.37):
